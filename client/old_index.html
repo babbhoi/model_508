@@ -1,0 +1,34 @@
+hello
+<p id="demo"></p>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var socket=io();
+	socket.on('e',function(data){
+		document.body.innerHTML="Server is already full try next time!";         
+		
+		socket.emit('dummy',{
+
+		});
+		socket.disconnect();
+		
+	});
+	// socket.emit('done',{
+
+	// 	r:'something'
+	// });
+	socket.on('change',function(data){
+		document.getElementById("demo").innerHTML =data.msg+" "+data.nu;
+	});
+
+	function myFunction() {
+    socket.emit('btn',{
+
+		r:'onlyage'
+	});
+}
+
+</script>
+<button onclick="myFunction()">click here</button>
+<p onclick="myFunction()">
+	sddkl ddnkljk asdnkls sdmlm
+</p>
