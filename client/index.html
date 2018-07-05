@@ -8,35 +8,94 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Hello, Game</title>
     <style type="text/css">
-		img.lt{
+		.lt{
 				-ms-transform: rotate(-45deg); /* IE 9 */
     			-webkit-transform: rotate(-45deg); /* Safari 3-8 */
     			transform: rotate(-45deg);
+				padding: 0;
+				
+				
 
 		}
 
-		img.lb{
+		.lb{
 				-ms-transform: rotate(45deg); /* IE 9 */
     			-webkit-transform: rotate(45deg); /* Safari 3-8 */
     			transform: rotate(45deg);
+				padding: 0;
+				
+				
 
+		}
+		.zp{
+			padding: 0;
+			
+			
 		}
 		.inv{
 			opacity: 0;
 		}
 		.sideb{
-			border-right: 1px solid #ccc;
-			border-left: 1px solid #ccc;
+			border: 1px solid #00ffcc;
+			
 		}
-		img.cover{
+		.borderc{
+			border: 2px solid #00ffcc;
+		}
+		.selectedmbr{
+			opacity: 1;			
+			border-style: solid;
+			border-width: 3px;
+			border-color: #36b0f7;
+			border-radius: 5px;
+		}
+		.loader {
+			border: 4px solid #f3f3f3;
+			border-top: 4px solid #3498db;
+			
+			
+			-webkit-animation: spin 1s linear infinite; /* Safari */
+			animation: spin 1s linear infinite;
+			}
+		.foundmember{
+			border-style: solid;
+			border-width: 3px;
+			border-color: tomato;
+			border-radius: 5px;
+		}
+		.bg-tamato{
+			background-color: tomato;
+		}
+		
+		
+		
+		.halfopacity{
+			opacity: 0.9;
+		}
+		.cardfade{
+			opacity: 0.2;
+			filter: alpha(opacity=20);
+		}
+
+		hr{
+			background:#00ffcc;
+		}
+		.zoom:hover{
+			-ms-transform: scale(1.1); /* IE 9 */
+    		-webkit-transform: scale(1.1); /* Safari 3-8 */
+    		transform: scale(1.1);
+			
 
 		}
+		
+		
+		
     </style>
   </head>
-  <body>
-    <h1>Hello, world!</h1>
+  <body class="bg-dark" style="color:white">
+    <h3 id="p_name" style="color:Tomato;"></h3>
     <div class="container">
     	<div class="row">
     		<div class="col">
@@ -86,69 +145,300 @@
 
 	  <div class="row">
 
-	    <div class="col-sm" id="trc">
-	      One of three columns--this will contaain the video section
+	    <div class="col-sm container" id="trc" >
+			<div class="row no-gutters">
+				<div class="col-3">
+						<img src="/client/img/cover.png" id="suit" onclick="wantsuit()" class="img-thumbnail" alt="Game_508" width=100% height=auto></img> 
+				</div>
+			</div>
+			<div>
+				Team Member dekhlo!
+			</div>
+
+			<div class="row no-gutters">
+					<div class="col-3">
+							<img src="/client/img/cover.png" id="m1" class="img-thumbnail" alt="Game_508" width=100% height=auto></img> 
+					</div>
+					<div class="col-3">
+							<img src="/client/img/cover.png" id="m2" class="img-thumbnail" alt="Game_508" width=100% height=auto></img> 
+					</div>
+			</div>	      
 	    </div>
 
-	    <div class="col-sm sideb">
-	      <div class="row align-items-center">
+	    <div class="col-sm sideb rounded">
+	      <div class="row align-items-center no-gutters">
 	      	<div class="col-4">
-	      		<img src="/client/img/cool.jpg" id="p5" class="img-thumbnail lt" alt="Cinque Terre" width=70% height=auto></img> 
-
-	      		<img src="/client/img/cool.jpg" id="p6" class="img-thumbnail lb" alt="Cinque Terre" width=70% height=auto></img>  
-
+				  	<div class="col lt" align="center">
+						<div id="pn5"></div>
+	      				<img src="/client/img/cover.png" id="p5" class="img-thumbnail" alt="Game_508" width=70% height=auto> 
+					</div>
+					<div class="col lb" align="center">
+	      				<img src="/client/img/cover.png" id="p6" class="img-thumbnail" alt="Game_508" width=70% height=auto>
+						  <div id="pn6"></div>
+					</div>
 	      	</div>
 	      	<div class="col-4">
-	      		<img src="/client/img/cool.jpg" id="p4" class="img-thumbnail" alt="Cinque Terre" width=70% height=auto>
-		      	<img src="/client/img/cool.jpg" id="p0" class="img-thumbnail inv" alt="Cinque Terre" width=70% height=auto>
-		      	<img src="/client/img/cool.jpg" id="p1" class="img-thumbnail" alt="Cinque Terre" width=70% height=auto></img> 
+				<div class="col zp" align="center">
+					<div id="pn4"></div>
+					<img src="/client/img/cover.png" id="p4" class="img-thumbnail" alt="Game_508" width=70% height=auto>
+				</div>
+					<img src="/client/img/cover.png" id="p0" class="img-thumbnail inv" alt="Game_508" width=70% height=auto>
+				<div class="col zp" align="center">
+					<img src="/client/img/cover.png" id="p1" class="img-thumbnail" alt="Game_508" width=70% height=auto>
+					<div id="pn1"></div>
+				</div> 
 	      	</div>
 	      	
 	      	<div class="col-4">
-	      		<img src="/client/img/cool.jpg" id="p3" class="img-thumbnail lb" alt="Cinque Terre" width=70% height=auto>
-		      	<img src="/client/img/cool.jpg" id="p2" class="img-thumbnail lt" alt="Cinque Terre" width=70% height=auto>	      	
+					<div class="col lb" align="center">
+							<div id="pn3"></div>
+							  <img src="/client/img/cover.png" id="p3" class="img-thumbnail" alt="Game_508" width=70% height=auto> 
+						</div>
+						<div class="col lt" align="center">
+							  <img src="/client/img/cover.png" id="p2" class="img-thumbnail" alt="Game_508" width=70% height=auto>
+							  <div id="pn2"></div>
+					</div>	      	
 	      	</div>
 	      </div>
 	    </div>
 
 	    <div class="col-sm">
 	      	<div class="row">
-	      		<div class="col-2" align="center">1</div>
-	      		<div class="col-2" align="center">1</div>
-	      		<div class="col-2" align="center">1</div>
-	      		<div class="col-2" align="center">1</div>
-	      		<div class="col-2" align="center">1</div>
-	      		<div class="col-2" align="center">1</div>
+	      		<div class="col-2" id="sp1" align="center">1</div>
+	      		<div class="col-2" id="sp2" align="center">1</div>
+	      		<div class="col-2" id="sp3" align="center">1</div>
+	      		<div class="col-2" id="sp4" align="center">1</div>
+	      		<div class="col-2" id="sp5" align="center">1</div>
+	      		<div class="col-2" id="sp6" align="center">1</div>
 	      		
 	      	</div>
 	    </div>
 
 	  </div>
 	  <hr>
-	  <div class="row">
+	  <div class="row no-gutters">
 	  		
 	  		
-	  				<div class="col-1 offset-md-2"><img src="/client/img/cover.png" id="c1" alt="Cinque Terre" onclick="cardpick(this.id)" width=100% height=auto></div>
-	  				<div class="col-1"><img src="/client/img/cover.png" id="c2" alt="Cinque Terre" onclick="cardpick(this.id)" width=100% height=auto></div>
-	  				<div class="col-1"><img src="/client/img/cover.png" id="c3" alt="Cinque Terre" onclick="cardpick(this.id)" width=100% height=auto></div>
-	  				<div class="col-1"><img src="/client/img/cover.png" id="c4" alt="Cinque Terre" onclick="cardpick(this.id)" width=100% height=auto></div>
-	  				<div class="col-1"><img src="/client/img/cover.png" id="c5" alt="Cinque Terre" onclick="cardpick(this.id)" width=100% height=auto></div>
-	  				<div class="col-1"><img src="/client/img/cover.png" id="c6" alt="Cinque Terre" onclick="cardpick(this.id)" width=100% height=auto></div>
-	  				<div class="col-1"><img src="/client/img/cover.png" id="c7" alt="Cinque Terre" onclick="cardpick(this.id)" width=100% height=auto></div>
-	  				<div class="col-1"><img src="/client/img/cover.png" id="c8" alt="Cinque Terre" onclick="cardpick(this.id)" width=100% height=auto></div>
+	  				<div class="col-3 offset-sm-2 col-sm-1 col-md-1 "><img src="/client/img/cover.png" id="c1" alt="Game_508" onclick="cardpick(this.id)" width=100% height=auto></div>
+	  				<div class="col-3 col-sm-1 col-md-1 "><img src="/client/img/cover.png" id="c2" alt="Game_508" onclick="cardpick(this.id)" width=100% height=auto></div>
+	  				<div class="col-3 col-sm-1 col-md-1 "><img src="/client/img/cover.png" id="c3" alt="Game_508" onclick="cardpick(this.id)" width=100% height=auto></div>
+	  				<div class="col-3 col-sm-1 col-md-1 "><img src="/client/img/cover.png" id="c4" alt="Game_508" onclick="cardpick(this.id)" width=100% height=auto></div>
+	  				<div class="col-3 col-sm-1 col-md-1 "><img src="/client/img/cover.png" id="c5" alt="Game_508" onclick="cardpick(this.id)" width=100% height=auto></div>
+	  				<div class="col-3 col-sm-1 col-md-1 "><img src="/client/img/cover.png" id="c6" alt="Game_508" onclick="cardpick(this.id)" width=100% height=auto></div>
+	  				<div class="col-3 col-sm-1 col-md-1 "><img src="/client/img/cover.png" id="c7" alt="Game_508" onclick="cardpick(this.id)" width=100% height=auto></div>
+	  				<div class="col-3 col-sm-1 col-md-1 "><img src="/client/img/cover.png" id="c8" alt="Game_508" onclick="cardpick(this.id)" width=100% height=auto></div>
 	  				     		
 		      		
 
 	  		
 	  </div>
+			  
+	  
+	  		
+			
+			  
+	  <!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				<div class="modal-content bg-dark">
+					<div class="modal-header" align="center">
+					<h5 class="modal-title" id="exampleModalLabel">Koi bana raha hai 508!</h5>
+					<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button> -->
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12" id="bid-info" align="center">
+									
+								</div>
+							</div>
+
+							<div class="row container">								
+								<div class="col-auto mr-auto">
+									<button class="btn btn-info btn-sx" data-="modal" onclick="bidding()" type="button">Bid Up</button>
+								</div>
+								<div class="col-auto">
+									<button class="btn btn-danger btn-xs pull-right" data-dismiss="modal" onclick="leavebid()" type="button">Give Up</button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-2 offset-1"><img src="/client/img/cover.png" id="mc1" alt="Game_508" width=100% height=auto></div>
+								<div class="col-2"><img src="/client/img/cover.png" id="mc2" alt="Game_508" width=100% height=auto></div>
+								<div class="col-2"><img src="/client/img/cover.png" id="mc3" alt="Game_508" width=100% height=auto></div>
+								<div class="col-2"><img src="/client/img/cover.png" id="mc4" alt="Game_508" width=100% height=auto></div>
+								<div class="col-2"><img src="/client/img/cover.png" id="mc5" alt="Game_508" width=100% height=auto></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						
+					</div>
+				</div>
+				</div>
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="suit-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content bg-dark">
+						<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle" align="center">Select Suit!</h5>
+						<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button> -->
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-3"><img src="/client/img/suit-1.png" id="sc1" alt="Game_508" onclick="suitpick(this.id)" width=100% height=auto></div>
+								<div class="col-3"><img src="/client/img/suit-2.png" id="sc2" alt="Game_508" onclick="suitpick(this.id)" width=100% height=auto></div>
+								<div class="col-3"><img src="/client/img/suit-3.png" id="sc3" alt="Game_508" onclick="suitpick(this.id)" width=100% height=auto></div>
+								<div class="col-3"><img src="/client/img/suit-4.png" id="sc4" alt="Game_508" onclick="suitpick(this.id)" width=100% height=auto></div>
+							</div>
+						</div>
+						<div class="modal-footer">						
+						<button type="button" class="btn btn-primary" data-dismiss="modal"  onclick="suitpicked()">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+					  <div class="modal-content bg-dark">
+						<div class="modal-header">
+						  <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						  </button>
+						</div>
+							<div class="row">
+								<div class="col-12" id="diswinner" align="center">
+									
+								</div>
+							</div>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						  
+						</div>
+					  </div>
+					</div>
+				  </div>
+
+		<div class="modal fade" id="tm-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+						  <div class="modal-content bg-dark">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel">A,K Chahiye?</h5>
+							  
+							</div>
+							<div class="modal-body container">
+								<div class="row no-gutters" id="cardgoeshere">
+
+								</div>								 	
+							</div>
+							<div class="modal-footer">
+							   <button type="button" class="btn btn-primary" onclick="teamsld()">Save changes</button>
+							</div>
+						  </div>
+						</div>
+					  </div>
+			
+			<!--Modal: Login with Avatar Form-->
+			<div class="modal fade bg-dark" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+					<!--Content-->
+					<div class="modal-content ">
+
+						<!--Header-->
+						<div class="modal-header">
+							<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar" class="rounded-circle img-responsive">
+						</div>
+						<!--Body-->
+						<div class="modal-body text-center mb-1">
+
+							<h5 class="mt-1 mb-2">King 508</h5>
+
+							<div class="md-form ml-0 mr-0">
+									<input  type="text" id="formName" class="formc form-control form-control-sm validate ml-0" placeholder="Enter Name">
+									
+									
+							</div>
+
+							<div class="md-form ml-0 mr-0">
+								<input  type="text" id="token" class="formc form-control form-control-sm validate ml-0" placeholder="Access Token ">
+								
+							</div>
+							<br>
+
+							<div class="text-center mt-4">
+								<button class="btn btn-primary btn-cyan mt-1" onclick="wantaccess()">Game ON <i class="fa fa-sign-in ml-1"></i></button>
+							</div>
+						</div>
+
+					</div>
+					<!--/.Content-->
+				</div>
+			</div>
+			<!--Modal: Login with Avatar Form-->
+
+			<div class="modal fade" id="confirm508" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					<div class="modal-content bg-dark">
+						<div class="modal-header" align="center">
+						<h5 class="modal-title" id="exampleModalLabel2">Koi bana raha hai 508!</h5>
+						
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid">
+									
+								<div class="row container">								
+									<div class="col-auto mr-auto">
+										<button class="btn btn-info btn-sx" data-="modal" onclick="bidding508()" type="button">Bid 508</button>
+									</div>
+									<div class="col-auto">
+										<button class="btn btn-danger btn-xs pull-right" data-dismiss="modal" onclick="leave508()" type="button">Give Up</button>
+									</div>
+								</div>
+								<div class="row no-gutters" id="carddiv">
+									
+									
+								</div>
+							</div>
+						</div>
+	
+						<div class="modal-footer">
+							
+						</div>
+					</div>
+					</div>
+				</div>
+	
+
+
+
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 		<script>
+
+
+				//$("#modalLoginAvatar").modal({backdrop: 'static', keyboard: false});
 				var socket=io();
 				var id=0;
 				var srcs={};
+				var aname={};
 				var ent=false;
 				var cards=[];
+				var canclk=false;
+				var suit_n=0;
+				var mb1=0;
+				var mb2=0;
+				var opensuit=false;
+
+				
 
 				socket.on('e',function(data){
 					document.body.innerHTML="Server is already full try next time!";         
@@ -159,54 +449,230 @@
 				});
 
 				socket.on('success',function(data){
+					$("#modalLoginAvatar").modal('hide');
 					id=data.uid;
-					document.getElementById("trc").innerHTML=id;
+					document.getElementById("p_name").innerHTML=data.uname;
+					//document.getElementById("trc").innerHTML=id;
 					//document.getElementById("my_card").src="/client/img/tonystark.jpg";
 				});
-
-				socket.on('plrdy',function(data){
+				socket.on('p_list',function(data){
 					var count=0;
-					for(i in data.players){
-						
-						if(data.players[i].id==id){
+					for(i in data){
+						aname[data[i].id]=data[i].n;
+						if(data[i].id==id){
 							ent=true;
 						}
 						if(ent){
 							count++;
-							srcs[data.players[i].id]="p"+count;
+							srcs[data[i].id]="p"+count;
+							document.getElementById("pn"+count).innerHTML=data[i].n;
 						}
 					}
 
-					for(i in data.players){
+					for(i in data){
 						count++;
-						if(data.players[i].id==id){
+						if(data[i].id==id){
 							break;
 						}
 						
-						srcs[data.players[i].id]="p"+count;
-						
-					}
-					for(i in data.players){
-						document.getElementById("trc").innerHTML+="<br>"+data.players[i].id+": "+data.players[i].n;
-
-						//document.getElementById(srcs[data.players[i].id]).src="/client/img/ser/card ("+data.players[i].n+").png";
-					}
-
-						cards=Array.from(data.cards);
-						cards.sort(function(a, b){return a - b});
-						var i;
-					for (i = 0; i <cards.length; i++) { 
-						document.getElementById("c"+(i+1)).src="/client/img/ser/card ("+cards[i]+").png";	
+						srcs[data[i].id]="p"+count;
+						document.getElementById("pn"+count).innerHTML=data[i].n;
 					}
 				});
 
-				socket.on('splayed',function(data){
-						console.log(data);
-						document.getElementById(srcs[data.pid]).src="/client/img/ser/card ("+data.card_n+").png";
+				socket.on('plrdy',function(data){
 					
+						cleanup();
+						cards=Array.from(data);
+						cards.sort(function(a, b){return a - b});
+						var i;
+					// all cards updating--------------------
+					for (i = 0; i <cards.length; i++) { 
+						document.getElementById("c"+(i+1)).src="/client/img/ser/card ("+cards[i]+").png";	
+					}
+					//updating 5 cards for bidding------------
+					for (i = 0; i <5; i++) { 
+						document.getElementById("mc"+(i+1)).src="/client/img/ser/card ("+cards[i]+").png";	
+					}
+					//bidding modal---------------------------
+					document.getElementById("bid-info").innerHTML="<h3>300</h3><br><h5>Anyone?</h5>";
+					$('#exampleModal').modal({backdrop: 'static', keyboard: false});  
+				});
+
+				socket.on('remcard',function(data){
+					var i;
+					for (i = 0; i <data.length; i++) {
+						cards.push(data[i]);
+					}
+					cards.sort(function(a, b){return a - b});
+						
+					// all cards updating--------------------
+					for (i = 0; i <cards.length; i++) { 
+						document.getElementById("c"+(i+1)).src="/client/img/ser/card ("+cards[i]+").png";
+						document.getElementById("carddiv").innerHTML+="<div class=\"col-2\"><img src=\"/client/img/ser/card ("+cards[i]+").png\"  alt=\"Game_508\" width=100% height=auto></div>";	
+					}
+					
+				});
+				socket.on('ask2t',function(data){
+					// modal to confirm 508
+					$('#confirm508').modal({backdrop: 'static', keyboard: false});
+
+				});
+
+				socket.on('splayed',function(data){
+						
+						document.getElementById(srcs[data.pid]).src="/client/img/ser/card ("+data.card_n+").png";
+						if(data.nxt==id){
+							canclk=true;
+							countms=true;
+							for(i=0;i<8;i++){
+								if(cards[i]!=0){								
+									if(gets(cards[i])==data.psuit){
+										countms=false;
+										document.getElementById("c"+(i+1)).classList.add("zoom");
+										//iiiiiiiiiiiiiiiiiiiiiiiii
+									}
+								}
+							}	
+							if(countms){
+								for(i=0;i<8;i++){
+									if(cards[i]!=0){
+										document.getElementById("c"+(i+1)).classList.add("zoom");								
+										//kkkkkkkkkkkkkkkkkkkkkkkkkkk	
+									}
+								}
+								opensuit=true;
+							}
+						}
+						
+										
 				})
 
+				socket.on('won',function(data){
+					document.getElementById("diswinner").innerHTML="<h2>Round won by: "+aname[data]+"</h2>";
+					$('#winnerModal').modal({backdrop: 'static', keyboard: false});
+					
+					setTimeout(function() {
+						$('#winnerModal').modal('hide');
+					},2000);
+					for(i in srcs){
+						document.getElementById(srcs[i]).src="/client/img/cover.png";
+					}
+				})
+
+				socket.on('canplay',function(data){
+						canclk=true;
+						for(i=0;i<8;i++){
+								if(cards[i]!=0){								
+									document.getElementById("c"+(i+1)).classList.add("zoom");
+									
+								}
+							}													
+				})
+
+				socket.on('updatesuit',function(data){
+					//document.getElementById("suit").src="/client/img/suit-"+data+".png";
+				});
+
+				socket.on('bid_508',function(data){
+					$('#exampleModal').modal('hide');
+					document.getElementById("diswinner").innerHTML="<h3 style=\"color:Tomato;\">508</h3><br><h5>"+aname[data]+"</h5>";
+					document.getElementById(srcs[data]).classList.add("foundmember");
+					if(data==id){
+						//$('#winnerModal').modal('hide');
+						$('#suit-Modal').modal({backdrop: 'static', keyboard: false});
+					}
+					else{
+						$('#winnerModal').modal({backdrop: 'static', keyboard: false});
+						setTimeout(function() {
+							$('#winnerModal').modal('hide');
+						}, 3000);
+
+					}
+				})
+
+				socket.on('bid_5082',function(data){
+					$('#confirm508').modal('hide');
+					document.getElementById("diswinner").innerHTML="<h3 style=\"color:Tomato;\">508</h3><br><h5>"+aname[data]+"</h5>";
+						
+						for(i in srcs){					
+							var el = document.getElementById(srcs[i]);
+							if (el.classList.contains("foundmember")) {
+								el.classList.remove("foundmember");
+							}	
+						}
+					
+					document.getElementById(srcs[data]).classList.add("foundmember");
+					if(data==id){
+						//$('#winnerModal').modal('hide');
+						$('#suit-Modal').modal({backdrop: 'static', keyboard: false});
+					}
+					else{
+						$('#winnerModal').modal({backdrop: 'static', keyboard: false});
+						setTimeout(function() {
+							$('#winnerModal').modal('hide');
+						}, 3000);
+
+					}
+				})
+				socket.on('cleansuit',function(data){
+					document.getElementById("suit").src="/client/img/cover.png";
+				})
+
+				socket.on('bid_v',function(data){
+					document.getElementById("bid-info").innerHTML="<h3>"+data.bidv+"</h3><br><h5>"+aname[data.bdr]+"</h5>";
+											
+				})
+
+				socket.on('bid_end',function(data){
+					$('#exampleModal').modal('hide');
+					document.getElementById("diswinner").innerHTML="<h3 style=\"color:Tomato;\">"+data.bidv+"</h3><br><h5>"+aname[data.bdr]+"</h5>";
+					document.getElementById(srcs[data.bdr]).classList.add("foundmember");
+					if(data.bdr==id){
+						//$('#winnerModal').modal('hide');
+						$('#suit-Modal').modal({backdrop: 'static', keyboard: false});
+					}
+					else{
+						$('#winnerModal').modal({backdrop: 'static', keyboard: false});
+						setTimeout(function() {
+							$('#winnerModal').modal('hide');
+						}, 3000);
+						
+					}						
+				})
+
+				socket.on('askcards',function(data){
+					var j;
+					
+					for(j=1;j<49;j++){
+						if((j%12>4 || j%12==0) && cards.indexOf(j)<0){
+							document.getElementById("cardgoeshere").innerHTML+="<div class=\"col-2 halfopacity\"><img src=\"/client/img/ser/card ("+j+").png\" id=\"m_c"+j+"\" alt=\"Game_508\" onclick=\"membergot(this.id)\" width=100% height=auto></div>";	
+						}
+						
+					}
+					$('#tm-Modal').modal({backdrop: 'static', keyboard: false});	
+				})
+
+				socket.on('updtmember',function(data){
+					document.getElementById("m1").src="/client/img/ser/card ("+data.m1+").png";	
+					document.getElementById("m2").src="/client/img/ser/card ("+data.m2+").png";	
+				})
+
+				socket.on('suitno',function(data){
+					document.getElementById("suit").src="/client/img/suit-"+data+".png";	
+						
+				})
+
+				socket.on('revealm',function(data){
+					document.getElementById(srcs[data]).classList.add("foundmember");
+											
+				})
 				
+				socket.on('updatescore',function(data){
+					for (i in data) {
+						document.getElementById("s"+srcs[i]).innerHTML=aname[i]+"<br>"+data[i];
+					}
+				})
 
 
 				
@@ -214,32 +680,177 @@
 
     <!-- Optional JavaScript -->
     <script type="text/javascript">
-
-    	
+		
+		$(document).ready(function(){
+    		$("#modalLoginAvatar").modal({backdrop: 'static', keyboard: false});
+		});
 
 
     	function cardpick(card_id) {
+			
+			var n=parseInt(card_id.charAt(1));
+			if(!canclk || cards[n-1]==0)return;
     		//$("#imageID").attr('src', 'srcImage.jpg');
     		//document.getElementById(card_id).src="tonystark.jpg";
-    		var element = document.getElementById(card_id);
-			element.style.opacity = "0.2";
-			element.style.filter  = 'alpha(opacity=20)'; // IE fallback
-			var n=parseInt(card_id.charAt(1));
-			console.log(n);
+			var element = document.getElementById(card_id);
+			element.classList.add("cardfade");
+			// element.style.opacity = "0.2";
+			// element.style.filter  = 'alpha(opacity=20)'; // IE fallback
+			
+			//console.log(n);
 			//console.log(id);
 
-    		document.getElementById("p1").src="/client/img/ser/card ("+cards[n-1]+").png";
+			document.getElementById("p1").src="/client/img/ser/card ("+cards[n-1]+").png";
+			var i;
+			for(i in srcs){
+				if(srcs[i].charAt(1)=='2')
+				break;
+			}
 
     		socket.emit('played',{
-    		pid:id,	
+			pid:id,	
+			nxt:i,
     		card_n:cards[n-1]  
-    		});
-			console.log("kjgjvo");
+			});
+			canclk=false;
+			cards[n-1]=0;
+			opensuit=false;
+			//console.log("kjgjvo");
 			//for assigning table card view
 
 			//alert(card_id); 
+
+			for(var i=0;i<8;i++){
+				var el =document.getElementById("c"+(i+1));
+				if (el.classList.contains("zoom")) {
+					el.classList.remove("zoom");
+				}
+			}
 					
 		}
+
+		function suitpick(suit_id){
+
+			suit_n=parseInt(suit_id.charAt(2));
+			var element1 = document.getElementById(suit_id);
+			element1.style.opacity = "1";
+			element1.style.filter  = 'alpha(opacity=100)'; // IE fallback
+			var i;	
+			//console.log(n);		
+			for(i=1;i<5;i++){
+				if(i!=suit_n){
+					var element = document.getElementById("sc"+i);
+					element.style.opacity = "0.5";
+					element.style.filter  = 'alpha(opacity=50)'; // IE fallback
+				}
+				
+			}
+		}
+
+		function suitpicked(){
+			//$('#suit-Modal').modal('hide');
+			socket.emit('suitpicked',suit_n);
+			document.getElementById("suit").src="/client/img/half_suit-"+suit_n+".png";
+		}
+
+		function bidding(){
+			socket.emit('bidup');
+		}
+
+		function leavebid(){
+			socket.emit('giveup');
+		}
+
+		function teamsld(){
+			if(mb1!=mb2 && mb1!=0 && mb2!=0){
+				$('#tm-Modal').modal('hide');
+				socket.emit('teamup',{
+					m1:mb1,
+					m2:mb2
+				});
+			}			
+		}
+
+		function membergot(m_id){
+			var new_m;
+			if(m_id.length==5){
+				new_m=(parseInt(m_id.charAt(3))*10)+parseInt(m_id.charAt(4));	
+			}
+			else
+			new_m=parseInt(m_id.charAt(3));
+
+			if(new_m==mb1 || new_m==mb2){
+				document.getElementById("m_c"+new_m).classList.remove("selectedmbr");
+				if(mb1==new_m)mb1=0;
+				if(mb2==new_m){
+					mb2=mb1;
+					mb1=0;
+				}
+			}
+			else{
+				if(mb1!=0)				
+				document.getElementById("m_c"+mb1).classList.remove("selectedmbr");
+				
+				document.getElementById(m_id).classList.add("selectedmbr");
+				
+				mb1=mb2;
+				mb2=new_m;
+			}
+		}
+
+		var gets=function (n){
+		return Math.floor(((n-1)/12)+1);
+		}
+
+		function wantsuit(){
+			if(opensuit)
+			socket.emit('getsuit');
+		}
+
+		function cleanup(){
+
+			opensuit=false;
+			suit_n=0;
+			mb1=0;
+			mb2=0;
+			document.getElementById("m1").src="/client/img/cover.png";
+			document.getElementById("m2").src="/client/img/cover.png";
+			document.getElementById("suit").src="/client/img/cover.png";	
+
+			for(i in srcs){
+				document.getElementById(srcs[i]).src="/client/img/cover.png";
+				var el = document.getElementById(srcs[i]);
+				if (el.classList.contains("foundmember")) {
+					el.classList.remove("foundmember");
+				}	
+			}
+
+			for (i = 0; i <cards.length; i++) { 
+				cards[i]=0;
+				document.getElementById("c"+(i+1)).src="/client/img/cover.png";	
+				var el = document.getElementById("c"+(i+1));
+				if (el.classList.contains("cardfade")) {
+					el.classList.remove("cardfade");
+				}
+			}
+		}
+
+		function wantaccess(){
+			socket.emit('wantaccess',{
+				code:document.getElementById("token").value,
+				name:document.getElementById("formName").value
+
+			});
+			
+		}
+
+		function bidding508(){
+			socket.emit('making508');
+		}
+		function leave508(){
+			socket.emit('no508');
+		}
+
 
 		
 
