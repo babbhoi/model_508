@@ -45,7 +45,7 @@ io.sockets.on('connection', function(socket){
 	//validating user 73884pass54499
 	socket.on('wantaccess',function(data){
 		
-		if(data.code=="456")
+		if(data.code=="73884pass54499")
 			req=true;
 		else
 			{
