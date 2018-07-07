@@ -1,2 +1,1 @@
-start cmd.exe /k 
-node app.js
+start cmd.exe 

@@ -309,7 +309,7 @@
 					<div class="modal-dialog modal-dialog-centered" role="document">
 					  <div class="modal-content bg-dark">
 						<div class="modal-header">
-						  <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+						  <h5 class="modal-title" id="exampleModalCenterTitle">Game Info</h5>
 						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						  </button>
@@ -326,6 +326,28 @@
 					  </div>
 					</div>
 				  </div>
+		
+				  <div class="modal fade" id="nxtround" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+						  <div class="modal-content bg-dark">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalCenterTitle">Game Info</h5>
+							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							  </button>
+							</div>
+								<div class="row">
+									<div class="col-12" id="nxtinfo" align="center">
+										
+									</div>
+								</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							  
+							</div>
+						  </div>
+						</div>
+					  </div>		  
 
 		<div class="modal fade" id="tm-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog" role="document">
@@ -335,6 +357,10 @@
 							  
 							</div>
 							<div class="modal-body container">
+								<div class="col-12 row no-gutters" id="cardgoeshere2">
+											
+								</div>
+								<hr>
 								<div class="row no-gutters" id="cardgoeshere">
 
 								</div>								 	
@@ -437,6 +463,8 @@
 				var mb1=0;
 				var mb2=0;
 				var opensuit=false;
+				var alOsuit=false;
+
 
 				
 
@@ -515,7 +543,10 @@
 				});
 				socket.on('ask2t',function(data){
 					// modal to confirm 508
-					$('#confirm508').modal({backdrop: 'static', keyboard: false});
+					setTimeout(function() {
+						$('#confirm508').modal({backdrop: 'static', keyboard: false});
+					}, 3000);
+					
 
 				});
 
@@ -644,9 +675,13 @@
 				socket.on('askcards',function(data){
 					var j;
 					
+					for(j=0;j<8;j++){
+						document.getElementById("cardgoeshere2").innerHTML+="<div class=\"col-1 halfopacity\"><img src=\"/client/img/ser/card ("+cards[j]+").png\" alt=\"Game_508\"  width=100% height=auto></div>";	
+					}
+					
 					for(j=1;j<49;j++){
 						if((j%12>4 || j%12==0) && cards.indexOf(j)<0){
-							document.getElementById("cardgoeshere").innerHTML+="<div class=\"col-2 halfopacity\"><img src=\"/client/img/ser/card ("+j+").png\" id=\"m_c"+j+"\" alt=\"Game_508\" onclick=\"membergot(this.id)\" width=100% height=auto></div>";	
+							document.getElementById("cardgoeshere").innerHTML+="<div class=\"col-1 halfopacity\"><img src=\"/client/img/ser/card ("+j+").png\" id=\"m_c"+j+"\" alt=\"Game_508\" onclick=\"membergot(this.id)\" width=100% height=auto></div>";	
 						}
 						
 					}
@@ -660,7 +695,11 @@
 
 				socket.on('suitno',function(data){
 					document.getElementById("suit").src="/client/img/suit-"+data+".png";	
-						
+					document.getElementById("diswinner").innerHTML="<h3 style=\"color:Tomato;\">Suit Opened!</h3>";
+					$('#winnerModal').modal();
+						setTimeout(function() {
+							$('#winnerModal').modal('hide');
+						}, 3000);
 				})
 
 				socket.on('revealm',function(data){
@@ -672,6 +711,30 @@
 					for (i in data) {
 						document.getElementById("s"+srcs[i]).innerHTML=aname[i]+"<br>"+data[i];
 					}
+				})
+
+				socket.on('bdrwin',function(data){
+					document.getElementById("nxtinfo").innerHTML="<h5>"+data.w1+", "+data.w2+", "+data.w3+" won the game for point"+data.pnt+". Made "+data.pntgot+" point. Next rount will start now!</h5>";
+					$('#nxtround').modal();
+						setTimeout(function() {
+							$('#nxtround').modal('hide');
+						}, 8000);
+				})
+
+				document.getElementById("nxtinfo").innerHTML="<h5>"+data.w1+", "+data.w2+" won the game for point"+data.pnt+". Made "+data.pntgot+" point. Next rount will start now!</h5>";
+				socket.on('bdrwin2',function(data){
+					$('#nxtround').modal();
+						setTimeout(function() {
+							$('#nxtround').modal('hide');
+						}, 8000);
+				})
+
+				socket.on('bdrlose',function(data){
+					document.getElementById("nxtinfo").innerHTML="<h5>"+data.w1+" lost the game for point"+data.pnt+", Not able to make "+data.pntgot+". Next rount will start now!</h5>";
+					$('#nxtround').modal();
+						setTimeout(function() {
+							$('#nxtround').modal('hide');
+						}, 8000);
 				})
 
 
@@ -688,18 +751,12 @@
 
     	function cardpick(card_id) {
 			
+			var el = document.getElementById(card_id);
+				
 			var n=parseInt(card_id.charAt(1));
-			if(!canclk || cards[n-1]==0)return;
-    		//$("#imageID").attr('src', 'srcImage.jpg');
-    		//document.getElementById(card_id).src="tonystark.jpg";
-			var element = document.getElementById(card_id);
+			if(!el.classList.contains("zoom"))return;//!canclk || cards[n-1]==0 || 
+    		var element = document.getElementById(card_id);
 			element.classList.add("cardfade");
-			// element.style.opacity = "0.2";
-			// element.style.filter  = 'alpha(opacity=20)'; // IE fallback
-			
-			//console.log(n);
-			//console.log(id);
-
 			document.getElementById("p1").src="/client/img/ser/card ("+cards[n-1]+").png";
 			var i;
 			for(i in srcs){
@@ -803,8 +860,10 @@
 		}
 
 		function wantsuit(){
-			if(opensuit)
-			socket.emit('getsuit');
+			if(opensuit && !alOsuit){
+				socket.emit('getsuit');
+				alOsuit=true;
+			}
 		}
 
 		function cleanup(){
@@ -813,6 +872,7 @@
 			suit_n=0;
 			mb1=0;
 			mb2=0;
+			alOsuit=false;
 			document.getElementById("m1").src="/client/img/cover.png";
 			document.getElementById("m2").src="/client/img/cover.png";
 			document.getElementById("suit").src="/client/img/cover.png";	

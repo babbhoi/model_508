@@ -45,7 +45,7 @@ io.sockets.on('connection', function(socket){
 	//validating user 73884pass54499
 	socket.on('wantaccess',function(data){
 		
-		if(data.code=="73884pass54499")
+		if(data.code=="")
 			req=true;
 		else
 			{
@@ -163,6 +163,15 @@ io.sockets.on('connection', function(socket){
 							if(bid>=400)
 								score[i]+=bid;
 							score[i]+=bid;
+							for (i in socket_list) {
+								socket_list[i].emit('bdrwin',{
+									w1:bidder,
+									w2:mbrid1,
+									w3:mbrid2,
+									pnt:bid,
+									pntgot:rscore[bidder]+rscore[mbrid2]+rscore[mbrid2]
+								});
+							}
 						}
 							
 					}
@@ -173,13 +182,30 @@ io.sockets.on('connection', function(socket){
 							if(bid>=400)
 								score[i]+=bid;
 							score[i]+=bid;
+							for (i in socket_list) {
+								socket_list[i].emit('bdrwin2',{
+									w1:bidder,
+									w2:mbrid2,
+									pnt:bid,
+									pntgot:rscore[bidder]+rscore[mbrid2]
+								});
+							}
 						}
 					}
 				}
 				else{
 					for (i in score) {
-						if(i!=mbrid1 && i!=mbrid2 && i!=bidder)
+						if(i!=mbrid1 && i!=mbrid2 && i!=bidder){
 							score[i]+=bid;
+							for (i in socket_list) {
+								socket_list[i].emit('bdrlose',{
+									w1:bidder,
+									pnt:bid,
+									pntgot:rscore[bidder]+rscore[mbrid2]+(mbr1==mbr2)?0:rscore[mbrid2]
+								});
+							}
+						}
+							
 					}
 				}
 				//reset round value
@@ -191,14 +217,14 @@ io.sockets.on('connection', function(socket){
 				}
 				setTimeout(function() {
 					startplay();
-				}, 5000);
+				}, 8000);
 			}		
 		});
 
 		
 		socket.on('dummy',function(data){
 			//console.log('dummy page deleted');                                       
-			num++;
+			//num++;
 			 if (num>=6) {isavl=false;}
 		});
 
@@ -233,13 +259,17 @@ io.sockets.on('connection', function(socket){
 			   }
 			}
 			
+			
 		   if(bid!=508){
 			   for(i in socket_list){
 				   socket_list[i].emit('ask2t');
 			   }
 		   }
 		   else
-			socket.emit('askcards');
+			setTimeout(function() {
+				socket.emit('askcards');
+			}, 3000);
+			
 		   
 		}); 
 		socket.on('making508',function(data){
